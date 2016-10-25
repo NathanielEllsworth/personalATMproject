@@ -1,0 +1,31 @@
+Alright I need five classes since there are 5 things going on at one time.
+
+I need two 'people' to make this transaction:
+
+a User (the person with the account)
+an institution like a Bank (by legal definition a Bank is considered a 'person' (LLC, Inc, Co, are all people, companies are people)
+
+Alright so I have:
+User
+Bank
+
+The User has an:
+Account
+
+This is called a transaction so I'll probably have a transaction class:
+Transaction
+
+And since this transaction will be automated I'll probably need an ATM class:
+ATM
+
+Alright so my classes will be:
+
+User
+
+Bank
+
+Account
+
+Transaction
+
+ATM
