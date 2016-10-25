@@ -16,6 +16,19 @@ public class Bank {
     //list of accounts the bank has
     private ArrayList<Account> accounts;
 
+
+    /**
+     * create a new Bank object with empty lists of users and accounts
+     * @param name the name of the bank
+     */
+    public Bank(String name){
+
+        this.name = name;
+        this.users = new ArrayList<User>();
+        this.accounts = new ArrayList<Account>();
+
+    }
+
     //will be random strings
     public String getNewUserUUID(){
 
@@ -59,9 +72,7 @@ public class Bank {
      * @return the uuid
      */
     //will be random strings
-    public String getNewAccountUUID();
-
-    {
+    public String getNewAccountUUID(){
 
         // inits
         String uuid;
@@ -70,26 +81,28 @@ public class Bank {
         boolean nonUnique;
 
         // continue looping until we get a unique ID
-        do {
+        do{
 
             //generate the number
             uuid = "";
-            for (int c = 0; c < len; c++) {
+            for(int c = 0; c < len; c++){
                 //casting the primitive int to the class Integer to call methods
-                uuid += ((Integer) rng.nextInt(10)).toString();
+                uuid += ((Integer)rng.nextInt(10)).toString();
             }
 
             // check to make sure it's unique
-            // iterate through all the users
+            // iterate through all the accounts
             nonUnique = false;
-            for (Account a : this.accounts) {
-                if (uuid.compareTo(a.getUUID()) == 0) {
+            for (Account a : this.accounts){
+                if(uuid.compareTo(a.getUUID()) == 0) {
                     nonUnique = true;
                     break;
                 }
             }
 
-        } while (nonUnique);
+        }while (nonUnique);
+
+
 
         return uuid;
 
@@ -128,8 +141,30 @@ public class Bank {
 
     }
 
-    
+
+    /**
+     * get the user object associated with a particular userID and pin, if they are valid
+     * @param userID the UUID of the user to log in
+     * @param pin the pin of the user
+     * @return the User object, if the login is successful, or null if it is not
+     */
+    public User userLogin(String userID, String pin) {
 
 
+        //search through list of users
+        for(User u : this.users){
+
+            //check user ID is correct and if it is validate the pin number
+            if (u.getUUID().compareTo(userID) == 0 && u.validatePin(pin)){
+                return u;
+            }
+
+
+        }
+
+        //if the user is not there or the pin is invalid, access denied!
+        return null;
+
+    }
 
 }

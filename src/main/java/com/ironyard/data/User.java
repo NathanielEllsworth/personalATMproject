@@ -79,5 +79,28 @@ public class User {
         return this.uuid;
     }
 
+    /**
+     * check whether a given pin matches the true User pin
+     * @param aPin the pin to check
+     * @return whether the pin is valid or not
+     */
+
+    public boolean validatePin(String aPin){
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //same thing as above, getting the memory, (the bytes of the pin object) then taking those bytes and digesting them through the MD5 algorithm
+            //which then returns a different array of bytes that will then be stored in pin hash
+            return MessageDigest.isEqual(md.digest(aPin.getBytes()),
+                    this.pinHash);
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("error, caught NoSuchAlgorithmException");
+            e.printStackTrace();
+            System.exit(1);;
+        }
+
+        return false;
+
+    }
 
 }
