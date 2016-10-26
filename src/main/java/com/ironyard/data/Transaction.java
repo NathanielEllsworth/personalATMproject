@@ -50,8 +50,14 @@ public class Transaction {
         //set the memo
         this.memo = memo;
 
-
     }
 
+    /**
+     * get the amount of the transaction
+     * @return the amount
+     */
+    public double getAmount(){
+        return this.amount;
+    }
 
 }

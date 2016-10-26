@@ -103,4 +103,35 @@ public class User {
 
     }
 
+    /**
+     * return the user's first name.
+     * @return the first name
+     */
+
+    public String getFirstName(){
+        return this.firstName;
+    }
+
+
+    /**
+     * print summaries for the accounts of this user.
+     */
+    //going to print the transactions for all of the accounts and their balances
+    public void printAccountsSummary(){
+
+        //%d is int %s is string
+
+        System.out.printf("\n\n%s's accounts summary", this.firstName);
+        for(int a = 0; a < this.accounts.size(); a++){
+            // asking each account class to generate it's own account line
+            System.out.printf("%d) %s\n",
+                    this.accounts.get(a).getSummaryLine());
+
+        }
+        System.out.println();
+
+    }
+
+
+
 }
