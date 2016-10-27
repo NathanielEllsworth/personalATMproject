@@ -94,7 +94,36 @@ public class Account {
         }
         return balance;
 
+    }
 
+
+    /**
+     * print the transaction history of the account
+     */
+    public void printTransHistory(){
+
+        System.out.printf("\nTransaction history for account %s\n", this.uuid);
+        //print transactions from the top of the list
+        //start with the last indexed transaction, size -1
+        for (int t = this.transactions.size()-1; t >= 0; t--){
+            System.out.println(this.transactions.get(t).getSummaryLine()); //each transaction has it's own summary line
+        }// now down the road I can get the various info from the transaction like the date, memo, amount to print out as well
+            //but I'm going to let THIS transaction print out ITS own line
+        System.out.println();
+
+    }
+
+    /**
+     * add a new transaction in this account
+     * @param amount the amount transacted
+     * @param memo the transaction memo
+     */
+    public void addTransaction(double amount, String memo){
+
+        //create new transaction object and add it to our list
+        //when we create a new transaction 'this' is how we are passing it through (transaction class, line 45)
+        Transaction newTrans = new Transaction(amount, memo, this);
+        this.transactions.add(newTrans);
 
     }
 

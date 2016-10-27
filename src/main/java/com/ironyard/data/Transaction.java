@@ -60,4 +60,24 @@ public class Transaction {
         return this.amount;
     }
 
+
+    /**
+     * get a string summarizing the transaction
+     * @return the summary string
+     */
+    public String getSummaryLine(){
+            // in order: returning the timestamp of the transaction, dollar amount, memo of the transaction
+        if(this.amount >= 0){
+            // again, two digits of precision past the decimal point
+            // need to fix timestamp to just print out mm/dd/yyyy
+            return String.format("%s : $%.02f : %s", this.timestamp.toString(),
+                    this.amount, this.memo);
+
+        }else{ //if it's a withdraw..
+            return String.format("%s : $(%.02f) : %s", this.timestamp.toString(),
+                    -this.amount, this.memo);
+
+        }
+    }
+
 }

@@ -121,10 +121,10 @@ public class User {
 
         //%d is int %s is string
 
-        System.out.printf("\n\n%s's accounts summary", this.firstName);
+        System.out.printf("\n\n%s's accounts summary\n", this.firstName);
         for(int a = 0; a < this.accounts.size(); a++){
             // asking each account class to generate it's own account line
-            System.out.printf("%d) %s\n",
+            System.out.printf("  %d) %s\n", a+1, //most people are use to counting starting from one
                     this.accounts.get(a).getSummaryLine());
 
         }
@@ -132,6 +132,55 @@ public class User {
 
     }
 
+    /**
+     * get the number of accounts of the user
+     * @return the number of accounts
+     */
+    public int numAccounts(){
+        return this.accounts.size();
+    }
+
+
+    /**
+     * print transaction history for a particular account
+     * @param acctIdx acctIdx the index of the account to use
+     */
+    public void printAcctTransHistory(int acctIdx){ //getting the account index to print
+        this.accounts.get(acctIdx).printTransHistory();
+
+
+    }
+
+    /**
+     * get the balance of a particular account
+     * @param acctIdx the index of the account to use
+     * @return the balance of the account
+     */
+    public double getAcctBalance(int acctIdx){
+        return this.accounts.get(acctIdx).getBalance();
+
+    }
+
+    /**
+     * get the UUID of a particular account
+     * @param acctIdx the index of the account to use
+     * @return the UUID of the account
+     */
+    public String getAcctUUID(int acctIdx){
+        return this.accounts.get(acctIdx).getUUID();
+    }
+
+
+    /**
+     * add a transaction to a particular account
+     * @param acctIdx the index of the account
+     * @param amount the amount of the transaction
+     * @param memo the memo of the transaction
+     */
+    public void addAcctTransaction(int acctIdx, double amount, String memo){
+        //getting a particular account here then adding a transaction
+        this.accounts.get(acctIdx).addTransaction(amount, memo);
+    }
 
 
 }
